@@ -4,10 +4,10 @@ console.log("Functions and template literals");
 console.log("Nivel 1");
 
 function printUserName(name) {
-  console.log("name : " + name);
+  return "name : " + name;
 }
 
-printUserName("Ada");
+console.log(printUserName("Ada"));
 
 //Nivel 2
 //Ejercicio 1

@@ -29,4 +29,21 @@ person.dirNom();
 
 //Nivel 3
 console.log("Nivel 3:");
-const objCreator = () => {};
+const objCreator = (abstractClass) => {
+  // const newInstance = function (shapeName) {
+  //   this.shapeName = shapeName;
+  // };
+  // newInstance.prototype = Object.create(abstractClass.prototype);
+};
+
+const Shape = function () {
+  this.shapeName = "none";
+  throw new Error("cannot instance an abstract class");
+};
+Shape.prototype.draw = function () {
+  return "Drawing " + this.shapeName;
+};
+// const Circle = function (shapeName) {
+//   this.shapeName = shapeName;
+// };
+// Circle.prototype = Object.create(Shape.prototype);

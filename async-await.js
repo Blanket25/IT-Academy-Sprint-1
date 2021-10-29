@@ -39,13 +39,12 @@ console.log("Nivel 1, ejercicio 1:");
 
 const getEmployee = async (id) => {
   const myPromise = await new Promise((resolve, reject) => {
-    employees.forEach((e) => {
-      if (e.id === id) {
-        resolve(e);
-      } else {
-        reject(new Error("no employee found"));
-      }
-    });
+    let findEmployee = employees.find((e) => e.id === id);
+    if (findEmployee) {
+      resolve(findEmployee);
+    } else {
+      reject(new Error("No employee found"));
+    }
   });
   return myPromise;
 };

@@ -36,7 +36,6 @@ console.log(findSomeone("Bianca"));
 
 //Nivel 2
 //Ejercicio 1
-console.log("Nivel 2, ejercicio 1:");
 
 let employees = [
   {
@@ -68,31 +67,35 @@ let salaries = [
   },
 ];
 
-//crea una arrow function getEmployee que retorne una Promise
-//efectuando la búsqueda en el objecto por su id.
 const getEmployee = (id) => {
-  return new Promise((resolve, reject) => {
+  const myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
     if (findEmployee) {
-      resolve(id);
+      resolve(findEmployee);
     } else {
-      reject(new Error("No id found"));
+      reject(new Error("No employee found"));
     }
   });
+  return myPromise;
 };
-getEmployee(2)
-  .then((id) => id)
+
+const salary = getEmployee(2)
+  .then((res) => {
+    console.log("Nivel 2, ejercicio 1:");
+    return getSalary(res);
+  })
   .catch((error) => console.log(error));
+
+salary.then((res) => console.log(res));
 
 //Ejercicio 2
 console.log("Nivel 2, ejercicio 2:");
 
 const getSalary = (employee) => {
-  let findSalary = salaries.find((s) => s.id === employee);
+  let findSalary = salaries.find((s) => s.id === employee.id);
+
   return findSalary.salary;
 };
-
-console.log(getSalary(2));
 
 //Ejercicio 3
 console.log("Nivel 2, ejercicio 3");

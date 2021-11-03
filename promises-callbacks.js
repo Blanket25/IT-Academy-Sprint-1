@@ -2,8 +2,6 @@ console.log("Promises and Callbacks");
 
 //Nivel 1
 //Ejercicio 1
-console.log("Nivel 1, ejercicio 1:");
-
 const returnPromise = (resolve, reject) =>
   new Promise(() => {
     const connection = true;
@@ -14,25 +12,25 @@ const returnPromise = (resolve, reject) =>
   });
 
 returnPromise(
-  (message) => console.log(message),
+  (message) => {
+    console.log("Nivel 1, ejercicio 1:");
+    console.log(message);
+  },
   (message) => console.log(message)
 );
 
 //Ejercicio 2
 console.log("Nivel 1, ejercicio 2:");
 
-const names = ["Daniel", "James", "Irina", "Diego", "Laura"];
+const evenOrOdd = (num, callback) => {
+  callback(num);
+};
 
-function findSomeone(personName) {
-  if (names.find((name) => name === personName)) {
-    return `I found you, ${personName}!`;
-  } else {
-    return `Sorry ${personName}, I cannot find you`;
-  }
-}
-
-console.log(findSomeone("Daniel"));
-console.log(findSomeone("Bianca"));
+evenOrOdd(2, (x) => {
+  x % 2 === 0
+    ? console.log(`your number ${x} is even`)
+    : console.log(`your number ${x} is odd`);
+});
 
 //Nivel 2
 //Ejercicio 1
@@ -67,7 +65,8 @@ let salaries = [
   },
 ];
 
-const getEmployee = (id) => {
+//Ejercicio 1
+function getEmployee(id) {
   const myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
     if (findEmployee) {
@@ -77,25 +76,31 @@ const getEmployee = (id) => {
     }
   });
   return myPromise;
-};
+}
 
-const salary = getEmployee(2)
-  .then((res) => {
-    console.log("Nivel 2, ejercicio 1:");
-    return getSalary(res);
-  })
-  .catch((error) => console.log(error));
-
-salary.then((res) => console.log(res));
+console.log("Nivel 2, ejercicio 1:");
+console.log(getEmployee(1));
 
 //Ejercicio 2
-console.log("Nivel 2, ejercicio 2:");
-
-const getSalary = (employee) => {
+function getSalary(employee) {
   let findSalary = salaries.find((s) => s.id === employee.id);
 
   return findSalary.salary;
-};
+}
+
+console.log("Nivel 2, ejercicio 2:");
+console.log(
+  getSalary({
+    id: 3,
+    salary: 2000,
+  })
+);
 
 //Ejercicio 3
-console.log("Nivel 2, ejercicio 3");
+const salary = getEmployee(2)
+  .then((res) => {
+    console.log("Nivel 2, ejercicio 3:");
+    return getSalary(res);
+  })
+  .catch((error) => console.log(error))
+  .then((res) => console.log(res));

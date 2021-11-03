@@ -38,13 +38,17 @@ class Shape {
   }
 }
 
-const objCreator = (Shape) => {
+const objCreator = () => {
   newObj = Object.create(Shape.prototype, {
     constructor: { value: Shape },
   });
   return newObj;
 };
 
-const Circle = objCreator();
-const Square = objCreator();
-const Rectangle = objCreator();
+const circle = objCreator();
+const square = objCreator();
+const rectangle = objCreator();
+
+console.log(circle);
+console.log(square);
+console.log(rectangle);

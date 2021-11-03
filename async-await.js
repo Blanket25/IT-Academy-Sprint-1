@@ -32,13 +32,8 @@ let salaries = [
 
 //Nivel 1
 //ejercicio 1
-console.log("Nivel 1, ejercicio 1:");
-//crea una arrow function getEmployee que retorni una Promise
-//efectuant la cerca en l'objecte pel seu id. Crea una altra arrow
-//function getSalary que rebi com a paràmetre un objecte employee i retorni el seu salari.
-
-const getEmployee = async (id) => {
-  const myPromise = await new Promise((resolve, reject) => {
+const getEmployee = (id) => {
+  const myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
     if (findEmployee) {
       resolve(findEmployee);
@@ -49,8 +44,71 @@ const getEmployee = async (id) => {
   return myPromise;
 };
 
-getEmployee(1)
+const employee = async () => {
+  try {
+    const result = await getEmployee(1);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+console.log("Nivel 1, ejercicio 1:");
+employee().then((result) => {
+  console.log(result);
+  return result;
+});
+
+const getSalary = (employee) => {
+  let findSalary = salaries.find((s) => s.id === employee.id);
+
+  return findSalary.salary;
+};
+
+const salary = async () => {
+  try {
+    const obj = await employee();
+    return getSalary(obj);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+salary().then((result) => {
+  console.log(result);
+  return result;
+});
+
+//Ejercicio 2
+const getEmployeeName = async (id) => {
+  try {
+    const employee = await getEmployee(id);
+    console.log("Nivel 1, ejercicio 2:");
+    console.log(employee.name);
+    console.log(getSalary(employee));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getEmployeeName(2)
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
 
-const getSalary = (employee) => employee.salary;
+// //Nivel 2
+// const showAfter2Secs = () => {
+//   const myPromise = new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("I've waited 2 seconds");
+//     }, 2000);
+//   });
+//   return myPromise;
+// };
+
+// const showMessage = async () => {
+//   const result = await showAfter2Secs();
+//   console.log("Nivel 2:");
+//   console.log(result);
+// };
+
+// showMessage();

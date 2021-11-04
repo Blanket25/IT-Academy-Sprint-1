@@ -2,7 +2,7 @@ console.log("Classes and arrow functions");
 
 //Nivel 1
 console.log("Nivel 1:");
-((a, b) => console.log(`${a} + ${b} = ${a + b}`))(1, 2);
+console.log(((a, b) => `${a} + ${b} = ${a + b}`)(1, 2));
 
 //Nivel 2
 //Ejercicio 1

@@ -53,8 +53,8 @@ const employee = async () => {
   }
 };
 
-console.log("Nivel 1, ejercicio 1:");
 employee().then((result) => {
+  console.log("Nivel 1, ejercicio 1:");
   console.log(result);
   return result;
 });
@@ -95,20 +95,20 @@ getEmployeeName(2)
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
 
-// //Nivel 2
-// const showAfter2Secs = () => {
-//   const myPromise = new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve("I've waited 2 seconds");
-//     }, 2000);
-//   });
-//   return myPromise;
-// };
+//Nivel 2
+const showAfter2Secs = () => {
+  const myPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("I've waited 2 seconds");
+    }, 2000);
+  });
+  return myPromise;
+};
 
-// const showMessage = async () => {
-//   const result = await showAfter2Secs();
-//   console.log("Nivel 2:");
-//   console.log(result);
-// };
+const showMessage = async () => {
+  const result = await showAfter2Secs();
+  console.log("Nivel 2:");
+  console.log(result);
+};
 
-// showMessage();
+showMessage();

@@ -4,10 +4,10 @@ console.log("Functions and template literals");
 console.log("Nivel 1");
 
 function printUserName(name) {
-  return "name : " + name;
+  console.log("My name is " + name);
 }
 
-console.log(printUserName("Ada"));
+printUserName("Ada");
 
 //Nivel 2
 //Ejercicio 1
@@ -21,11 +21,11 @@ console.log(`username: ${userName} ${userSurname}`);
 //Ejercicio 2
 console.log("Nivel 2, ejercicio 2:");
 
-function returnAge(age) {
-  return `I'm ${age} years old`;
+function sayYourName(name) {
+  return name;
 }
 
-console.log(returnAge(30));
+console.log(`Hello! ${sayYourName("Ada")}. Nice to meet you.`);
 
 //Nivel 3
 //Ejercicio 1

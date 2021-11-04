@@ -21,11 +21,7 @@ console.log(`username: ${userName} ${userSurname}`);
 //Ejercicio 2
 console.log("Nivel 2, ejercicio 2:");
 
-function sayYourName(name) {
-  return name;
-}
-
-console.log(`Hello! ${sayYourName("Ada")}. Nice to meet you.`);
+printUserName(`${userName}`);
 
 //Nivel 3
 //Ejercicio 1
@@ -38,6 +34,7 @@ for (let i = 0; i < 10; i++) {
     for (let i = 0; i < 10; i++) {
       console.log(i);
     }
+    console.log("-------------------------------");
   });
 }
 

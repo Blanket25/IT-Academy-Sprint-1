@@ -1,0 +1,28 @@
+{
+  "name": "sprint-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node-utils.js",
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "fileger": "^1.1.0",
+    "fs-extra": "^10.0.0",
+    "jest": "^27.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blanket25/IT-Academy-Sprint-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blanket25/IT-Academy-Sprint-1/issues"
+  },
+  "homepage": "https://github.com/Blanket25/IT-Academy-Sprint-1#readme"
+}

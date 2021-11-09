@@ -2,35 +2,36 @@ console.log("Promises and Callbacks");
 
 //Nivel 1
 //Ejercicio 1
-const returnPromise = (resolve, reject) =>
-  new Promise(() => {
-    const connection = true;
 
-    connection
-      ? resolve("Succesfully connected")
-      : reject("Something went wrong");
+const returnPromise = (connection) =>
+  new Promise((resolve, reject) => {
+    if (connection === true) {
+      resolve("Succesfully connected");
+    } else {
+      reject("Something went wrong");
+    }
   });
 
-returnPromise(
-  (message) => {
+returnPromise(true)
+  .then((message) => {
     console.log("Nivel 1, ejercicio 1:");
     console.log(message);
-  },
-  (message) => console.log(message)
-);
+  })
+  .catch((err) => {
+    console.log("Nivel 1, ejercicio 1:");
+    console.log(err);
+  });
 
 //Ejercicio 2
 console.log("Nivel 1, ejercicio 2:");
 
 const evenOrOdd = (num, callback) => {
-  callback(num);
+  num % 2 === 0
+    ? callback(`your number ${num} is even`)
+    : callback(`your number ${num} is odd`);
 };
 
-evenOrOdd(2, (x) => {
-  x % 2 === 0
-    ? console.log(`your number ${x} is even`)
-    : console.log(`your number ${x} is odd`);
-});
+evenOrOdd(2, (result) => console.log(result));
 
 //Nivel 2
 //Ejercicio 1
@@ -83,9 +84,15 @@ console.log(getEmployee(1));
 
 //Ejercicio 2
 function getSalary(employee) {
-  let findSalary = salaries.find((s) => s.id === employee.id);
-
-  return findSalary.salary;
+  const myPromise = new Promise((resolve, reject) => {
+    let findSalary = salaries.find((s) => s.id === employee.id);
+    if (findSalary) {
+      resolve(findSalary.salary);
+    } else {
+      reject(new Error("No salary found"));
+    }
+  });
+  return myPromise;
 }
 
 console.log("Nivel 2, ejercicio 2:");
@@ -97,10 +104,17 @@ console.log(
 );
 
 //Ejercicio 3
-const salary = getEmployee(2)
+getEmployee(2)
   .then((res) => {
     console.log("Nivel 2, ejercicio 3:");
-    return getSalary(res);
+    console.log(getSalary(res));
   })
-  .catch((error) => console.log(error))
-  .then((res) => console.log(res));
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
+
+module.exports = {
+  returnPromise,
+  evenOrOdd,
+  getEmployee,
+  getSalary,
+};

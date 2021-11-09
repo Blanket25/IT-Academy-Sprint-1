@@ -4,7 +4,6 @@
   "description": "",
   "main": "node-utils.js",
   "dependencies": {
-    "compressing": "^1.5.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "fileger": "^1.1.0",

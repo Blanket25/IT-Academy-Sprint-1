@@ -1,6 +1,6 @@
 console.log("Node utils:");
 const fs = require("fs-extra");
-const compressing = require("compressing");
+var zlib = require("zlib");
 const crypto = require("crypto");
 
 //Nivel 1
@@ -45,10 +45,10 @@ showMessageFromAnotherFile();
 console.log("Nivel 2:");
 
 const compFile = () => {
-  new compressing.gzip.FileStream({ source: "someText.txt" })
-    .on("error", (err) => console.log(err))
-    .pipe(fs.createWriteStream("compFile.gz"))
-    .on("error", (err) => console.log(err));
+  fs.createReadStream("someText.txt")
+    .pipe(zlib.createGzip())
+    .pipe(fs.createWriteStream("someText.txt.gz"));
+  console.log("File Compressed.");
 };
 
 compFile();
@@ -83,20 +83,17 @@ const encodeMessages = async (file) => {
 
 encodeMessages("someText.txt");
 
-const ENCRYPTION_KEY = "1235678123456781234567812345678"; // Must be 256 bits (32 characters)
-const IV_LENGTH = 16; // For AES, this is always 16
+// let key = "1235678123456781234567812345678";
+// let iv = "1235678123456781";
 
-let key = "1235678123456781234567812345678";
-let iv = "123567812345678";
+// function encrypt(text) {
+//   // let iv = crypto.randomBytes(IV_LENGTH);
+//   let cipher = crypto.createCipheriv("aes-192-cbc", Buffer.from(key), iv);
+//   let encrypted = cipher.update(text);
 
-function encrypt(text) {
-  // let iv = crypto.randomBytes(IV_LENGTH);
-  let cipher = crypto.createCipheriv("aes-192-cbc", Buffer.from(key), iv);
-  let encrypted = cipher.update(text);
+//   encrypted = Buffer.concat([encrypted, cipher.final()]);
 
-  encrypted = Buffer.concat([encrypted, cipher.final()]);
+//   return iv.toString("hex") + ":" + encrypted.toString("hex");
+// }
 
-  return iv.toString("hex") + ":" + encrypted.toString("hex");
-}
-
-console.log(encrypt(message));
+// console.log(encrypt(message));

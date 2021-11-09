@@ -32,6 +32,7 @@ let salaries = [
 
 //Nivel 1
 //ejercicio 1
+
 const getEmployee = (id) => {
   const myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
@@ -60,15 +61,21 @@ employee().then((result) => {
 });
 
 const getSalary = (employee) => {
-  let findSalary = salaries.find((s) => s.id === employee.id);
-
-  return findSalary.salary;
+  const myPromise = new Promise((resolve, reject) => {
+    let findSalary = salaries.find((s) => s.id === employee.id);
+    if (findSalary) {
+      resolve(findSalary.salary);
+    } else {
+      reject(new Error("No salary found"));
+    }
+  });
+  return myPromise;
 };
 
 const salary = async () => {
   try {
     const obj = await employee();
-    return getSalary(obj);
+    console.log(await getSalary(obj));
   } catch (error) {
     console.log(error);
   }

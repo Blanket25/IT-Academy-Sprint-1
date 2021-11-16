@@ -111,10 +111,3 @@ getEmployee(2)
   })
   .then((res) => console.log(res))
   .catch((error) => console.log(error));
-
-module.exports = {
-  returnPromise,
-  evenOrOdd,
-  getEmployee,
-  getSalary,
-};

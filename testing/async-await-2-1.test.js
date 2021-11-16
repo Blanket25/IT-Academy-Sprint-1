@@ -1,9 +1,10 @@
-const { showMessage } = require("../app/async-await-2-1");
+const { showAfter2Secs } = require("../app/async-await-2-1");
 
-test("the message appears after 2 secs", async () => {
-  await expect(showMessage()).resolves.toBe("I've waited 2 seconds");
+jest.useFakeTimers();
+jest.spyOn(global, "setTimeout");
+
+test("waits 1 second before printing a message", () => {
+  showAfter2Secs();
+
+  expect(setTimeout).toHaveBeenCalledTimes(1);
 });
-
-// test("the fetch fails with an error", async () => {
-//   await expect(fetchData()).rejects.toMatch("error");
-// });

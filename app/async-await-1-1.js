@@ -1,3 +1,33 @@
+let employees = [
+  {
+    id: 1,
+    name: "Linux Torvalds",
+  },
+  {
+    id: 2,
+    name: "Bill Gates",
+  },
+  {
+    id: 3,
+    name: "Jeff Bezos",
+  },
+];
+
+let salaries = [
+  {
+    id: 1,
+    salary: 4000,
+  },
+  {
+    id: 2,
+    salary: 1000,
+  },
+  {
+    id: 3,
+    salary: 2000,
+  },
+];
+
 const getEmployee = (id) => {
   const myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
@@ -50,3 +80,8 @@ salary().then((result) => {
   console.log(result);
   return result;
 });
+
+module.exports = {
+  getEmployee,
+  getSalary,
+};

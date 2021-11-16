@@ -16,5 +16,5 @@ const showMessage = async () => {
 showMessage();
 
 module.exports = {
-  showMessage,
+  showAfter2Secs,
 };

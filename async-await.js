@@ -75,7 +75,7 @@ const getSalary = (employee) => {
 const salary = async () => {
   try {
     const obj = await employee();
-    console.log(await getSalary(obj));
+    return await getSalary(obj);
   } catch (error) {
     console.log(error);
   }
@@ -92,7 +92,7 @@ const getEmployeeName = async (id) => {
     const employee = await getEmployee(id);
     console.log("Nivel 1, ejercicio 2:");
     console.log(employee.name);
-    console.log(getSalary(employee));
+    return getSalary(employee);
   } catch (error) {
     console.log(error);
   }
@@ -113,9 +113,13 @@ const showAfter2Secs = () => {
 };
 
 const showMessage = async () => {
-  const result = await showAfter2Secs();
-  console.log("Nivel 2:");
-  console.log(result);
+  try {
+    const result = await showAfter2Secs();
+    console.log("Nivel 2:");
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 showMessage();

@@ -21,7 +21,7 @@ console.log(`username: ${userName} ${userSurname}`);
 //Ejercicio 2
 console.log("Nivel 2, ejercicio 2:");
 
-printUserName(`${userName}`);
+console.log(`Hello, ${printUserName("Carlos")}`);
 
 //Nivel 3
 //Ejercicio 1

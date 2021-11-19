@@ -68,7 +68,7 @@ let salaries = [
 
 //Ejercicio 1
 function getEmployee(id) {
-  const myPromise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
     if (findEmployee) {
       resolve(findEmployee);
@@ -76,7 +76,6 @@ function getEmployee(id) {
       reject(new Error("No employee found"));
     }
   });
-  return myPromise;
 }
 
 console.log("Nivel 2, ejercicio 1:");
@@ -84,7 +83,7 @@ console.log(getEmployee(1));
 
 //Ejercicio 2
 function getSalary(employee) {
-  const myPromise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     let findSalary = salaries.find((s) => s.id === employee.id);
     if (findSalary) {
       resolve(findSalary.salary);
@@ -92,14 +91,13 @@ function getSalary(employee) {
       reject(new Error("No salary found"));
     }
   });
-  return myPromise;
 }
 
 console.log("Nivel 2, ejercicio 2:");
 console.log(
   getSalary({
     id: 3,
-    salary: 2000,
+    name: "Jeff Bezos",
   })
 );
 
@@ -107,7 +105,7 @@ console.log(
 getEmployee(2)
   .then((res) => {
     console.log("Nivel 2, ejercicio 3:");
-    console.log(getSalary(res));
+    return getSalary(res);
   })
   .then((res) => console.log(res))
   .catch((error) => console.log(error));

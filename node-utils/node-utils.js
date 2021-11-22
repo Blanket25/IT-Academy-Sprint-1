@@ -1,11 +1,11 @@
 console.log("Node utils:");
-const fs = require("fs-extra");
+const fs = require("fs");
+const fsp = require("fs.promises");
 var zlib = require("zlib");
 const crypto = require("crypto");
 
 //Nivel 1
 //Ejercicio 1
-console.log("Nivel 1, ejercicio 1:");
 
 const printMessageEverySec = () => {
   setInterval(() => {
@@ -19,7 +19,7 @@ const message = "Hello, I come from another World!";
 
 const writeMessageInAnotherFile = async () => {
   try {
-    await fs.writeFile("someText.txt", message, "utf-8");
+    await fsp.writeFile("someText.txt", message);
     console.log("Nivel 1, ejercicio 2:");
     console.log("File created");
   } catch (err) {
@@ -31,7 +31,7 @@ writeMessageInAnotherFile();
 //Ejercicio 3
 const showMessageFromAnotherFile = async () => {
   try {
-    const data = await fs.readFile("someText.txt", "utf-8");
+    const data = await fsp.readFile("./someText.txt", "utf-8");
     console.log("Nivel 1, ejercicio 3:");
     console.log(data);
   } catch (err) {
@@ -66,15 +66,15 @@ showFilesFromDir();
 //Nivel 3
 const encodeMessages = async (file) => {
   try {
-    const hexFile = await fs.readFile(file, "hex");
-    const base64File = await fs.readFile(file, "base64");
+    const hexFile = await fsp.readFile(file, "hex");
+    const base64File = await fsp.readFile(file, "base64");
 
     console.log("Nivel 3:");
 
-    await fs.writeFile("someTextHex.txt", hexFile, () =>
-      console.log("File created and encoded(hex)")
-    );
-    await fs.writeFile("someTextBase64.txt", base64File);
+    await fsp.writeFile("someTextHex.txt", hexFile);
+    console.log("File created and encoded(hex)");
+
+    await fsp.writeFile("someTextBase64.txt", base64File);
     console.log("File created and encoded(base64)");
   } catch (err) {
     console.log(err);
@@ -83,6 +83,7 @@ const encodeMessages = async (file) => {
 
 encodeMessages("someText.txt");
 
+//NO HACER CASO A LO QUE ESTA DEBAJO! SON INTENTOS FRUSTRADOS
 // let key = "1235678123456781234567812345678";
 // let iv = "1235678123456781";
 

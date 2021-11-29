@@ -34,73 +34,68 @@ let salaries = [
 //ejercicio 1
 
 const getEmployee = (id) => {
-  const myPromise = new Promise((resolve, reject) => {
+  return (myPromise = new Promise((resolve, reject) => {
     let findEmployee = employees.find((e) => e.id === id);
     if (findEmployee) {
       resolve(findEmployee);
     } else {
       reject(new Error("No employee found"));
     }
-  });
-  return myPromise;
+  }));
 };
 
 const employee = async () => {
   try {
     const result = await getEmployee(1);
-    return result;
+    console.log("Nivel 1, ejercicio 1: ");
+    console.log(result);
   } catch (error) {
     console.log(error);
   }
 };
 
-employee().then((result) => {
-  console.log("Nivel 1, ejercicio 1:");
-  console.log(result);
-  return result;
-});
+employee();
 
 const getSalary = (employee) => {
-  const myPromise = new Promise((resolve, reject) => {
+  return (myPromise = new Promise((resolve, reject) => {
     let findSalary = salaries.find((s) => s.id === employee.id);
     if (findSalary) {
       resolve(findSalary.salary);
     } else {
       reject(new Error("No salary found"));
     }
-  });
-  return myPromise;
+  }));
 };
 
 const salary = async () => {
   try {
-    const obj = await employee();
-    return await getSalary(obj);
+    const sal = await getSalary({
+      id: 3,
+      name: "Jeff Bezos",
+    });
+    console.log("Nivel 1, ejercicio 1: ");
+    console.log(sal);
   } catch (error) {
     console.log(error);
   }
 };
 
-salary().then((result) => {
-  console.log(result);
-  return result;
-});
+salary();
 
 //Ejercicio 2
 const getEmployeeName = async (id) => {
   try {
     const employee = await getEmployee(id);
+    const sal = await getSalary(employee);
     console.log("Nivel 1, ejercicio 2:");
-    console.log(employee.name);
-    return getSalary(employee);
+    console.log(`Employee: ${employee.name}`);
+    console.log(`Salary: ${sal}`);
   } catch (error) {
     console.log(error);
   }
 };
 
-getEmployeeName(2)
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error));
+getEmployeeName(2);
 
 //Nivel 2
 const showAfter2Secs = () => {
